@@ -1,0 +1,115 @@
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    --background: 0 0% 100%;
+    --foreground: 222.2 47.4% 11.2%;
+    
+    --muted: 210 40% 96.1%;
+    --muted-foreground: 215.4 16.3% 46.9%;
+    
+    --popover: 0 0% 100%;
+    --popover-foreground: 222.2 47.4% 11.2%;
+    
+    --card: 0 0% 100%;
+    --card-foreground: 222.2 47.4% 11.2%;
+    
+    --border: 214.3 31.8% 91.4%;
+    --input: 214.3 31.8% 91.4%;
+    
+    --primary: 199 89% 48%;
+    --primary-foreground: 210 40% 98%;
+    
+    --secondary: 210 40% 96.1%;
+    --secondary-foreground: 222.2 47.4% 11.2%;
+    
+    --accent: 210 40% 96.1%;
+    --accent-foreground: 222.2 47.4% 11.2%;
+    
+    --destructive: 0 100% 50%;
+    --destructive-foreground: 210 40% 98%;
+    
+    --ring: 199 89% 48%;
+    
+    --radius: 1rem;
+  }
+
+  /* Add these at the beginning of the @layer base section */
+  /* Ensure background color is applied immediately */
+  html, body, #root {
+    @apply bg-background min-h-screen;
+    background-color: hsl(var(--background));
+  }
+}
+
+@layer components {
+  .glass-card {
+    @apply bg-white/70 dark:bg-card/80 backdrop-blur-lg border border-white/20 dark:border-white/10 shadow-sm;
+  }
+  
+  .mobile-container {
+    @apply h-screen w-full max-w-md mx-auto flex flex-col;
+    padding-top: var(--safe-area-inset-top, 0);
+    padding-bottom: var(--safe-area-inset-bottom, 0);
+  }
+  
+  .mobile-container-with-nav {
+    @apply h-full w-full max-w-md mx-auto flex flex-col pb-16;
+    padding-top: var(--safe-area-inset-top, 0);
+    padding-bottom: calc(var(--safe-area-inset-bottom, 0) + 4rem);
+  }
+  
+  .page-container {
+    @apply flex flex-col h-full w-full overflow-hidden;
+  }
+  
+  .page-content {
+    @apply flex-1 overflow-y-auto overflow-x-hidden;
+    -webkit-overflow-scrolling: touch;
+  }
+  
+  .hover-card {
+    @apply transition-all duration-300 active:scale-95;
+  }
+  
+  .nav-item {
+    @apply flex flex-col items-center justify-center text-xs font-medium transition-colors;
+  }
+  
+  .nav-item-active {
+    @apply text-primary;
+  }
+  
+  .nav-item-inactive {
+    @apply text-muted-foreground hover:text-foreground;
+  }
+  
+  /* For app install prompt */
+  .app-install-prompt {
+    @apply fixed bottom-0 left-0 right-0 bg-background border-t border-border p-4 flex flex-col gap-2;
+    z-index: 100;
+    padding-bottom: calc(var(--safe-area-inset-bottom, 0) + 1rem);
+  }
+}
+
+@layer utilities {
+  .scrollbar-hidden {
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+  }
+  
+  .scrollbar-hidden::-webkit-scrollbar {
+    display: none;
+  }
+  
+  .safe-top {
+    padding-top: var(--safe-area-inset-top, 0);
+  }
+  
+  .safe-bottom {
+    padding-bottom: var(--safe-area-inset-bottom, 0);
+  }
+}
